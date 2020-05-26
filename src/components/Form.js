@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Button, Tooltip } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 
 
 const Search = ( { pairing, setPairing } ) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Statistic, Row, Col, Button } from 'antd';
+import { List, Typography } from 'antd';
 
 const Wines = ( { pairing, setPairing } ) => {
 
@@ -9,12 +9,15 @@ const Wines = ( { pairing, setPairing } ) => {
     const [description, setDescription] = useState('')
     const [image, setImage] = useState('')
     const [wineInfo, setWineInfo] = useState('')
+    const [url, setUrl] = useState('')
+    const [price, setPrice] = useState('')
+    const [title, setTitle] = useState('')
+
+    const wineStyle = {
+        fontSize: '3vh'
+    }
 
     console.log('propsit', pairing)
-
-    const api_key = process.env.API_KEY
-
-    console.log('key' ,api_key)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,34 +39,40 @@ const Wines = ( { pairing, setPairing } ) => {
             setDescription(data.data.pairingText)
             setImage(data.data.productMatches[0].imageUrl)
             setWineInfo(data.data.productMatches[0].description)
+            setUrl(data.data.productMatches[0].link)
+            setPrice(data.data.productMatches[0].price)
+            setTitle(data.data.productMatches[0].title)
+
     };
     fetchData();
 }, [pairing]);
 
+    if (pairing === '') {
+        return (
+            <div>
+               No matches yet..
+            </div>
+        )
+    } else {
+
     return (
     <div>
-    <Row gutter={16}>
-    <Col span={12}>
-    <h3>
-    {wines[0]}
-    </h3>
-    </Col>
-    <Col span={12}>
-    <h3>
-    {wines[1]}
-    </h3>
-    </Col>
-    <Col span={12}>
-    <h3>
-    {wines[2]}
-    </h3>
-    </Col>
-    </Row>
-      <h4>{description}</h4>
+    <List
+      header={<div style={wineStyle}>Your wine matches:</div>}
+      dataSource={wines}
+      renderItem={item => (
+        <List style={wineStyle}>
+         {item}
+        </List>
+      )}
+    />
+      <p>{description}</p>
       <img src={image} alt=""></img>
-      <h4>{wineInfo}</h4>
+      <p><a href={url}>{title}</a></p>
+      <p>{wineInfo}</p>
+      <p>Price: {price}</p>
       </div>
     );
 }
-
+}
 export default Wines
