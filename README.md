@@ -12,4 +12,7 @@ Technologies:
 - Tests with Cypress
 - Basic styles with Ant Design
 
+Production version can be found from here:
+
+https://master.d254bzg8c2hfwu.amplifyapp.com/
 
