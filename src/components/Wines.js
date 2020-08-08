@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { List, Typography } from 'antd';
+import { List, Divider } from 'antd';
 
-const Wines = ( { pairing, setPairing } ) => {
+const Wines = ( { pairing } ) => {
 
 
     const [wines, setWines] = useState('')
@@ -13,15 +13,12 @@ const Wines = ( { pairing, setPairing } ) => {
     const [price, setPrice] = useState('')
     const [title, setTitle] = useState('')
 
-    const wineStyle = {
-        fontSize: '3vh'
-    }
-
-    console.log('propsit', pairing)
-
     useEffect(() => {
         const fetchData = async () => {
-        const data = await axios({
+          if (pairing === '') {
+            return null
+          }
+          const data = await axios({
             "method":"GET",
             "url":"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/wine/pairing",
             "headers":{
@@ -30,11 +27,9 @@ const Wines = ( { pairing, setPairing } ) => {
             "x-rapidapi-key":"e527975635msh0f3e4ff006bebe9p1a5ca7jsnbd1a020fdbc3",
             "useQueryString":true
             },"params":{
-            "maxPrice":"50",
             "food":`${pairing}`
             }
             });
-            console.log('wine data', data.data.productMatches[0])
             setWines(Array.from(data.data.pairedWines))
             setDescription(data.data.pairingText)
             setImage(data.data.productMatches[0].imageUrl)
@@ -58,14 +53,18 @@ const Wines = ( { pairing, setPairing } ) => {
     return (
     <div>
     <List
-      header={<div style={wineStyle}>Your wine matches:</div>}
+      size='small' 
+      bordered
+      header={<div style={{fontSize: '4vh'}}>
+      Your wine matches:</div>}
       dataSource={wines}
       renderItem={item => (
-        <List style={wineStyle}>
+        <List.Item style={{fontSize: '3vh', 'margin': '3vh'}}>
          {item}
-        </List>
+        </List.Item>
       )}
     />
+    <Divider orientation="left"></Divider>
       <p>{description}</p>
       <img src={image} alt=""></img>
       <p><a href={url}>{title}</a></p>

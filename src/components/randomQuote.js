@@ -18,7 +18,6 @@ const Quote = () => {
           }
           });
           setQuote(data.data)
-          console.log(data)
       };
       fetchData();
     }, []);
@@ -27,7 +26,7 @@ const Quote = () => {
     return (
       <div>
         <h2>Food trivia</h2>
-        <p>{quote.text}</p>
+        <p style={{'margin': '2vh'}}>{quote.text}</p>
       </div>
     )
   }

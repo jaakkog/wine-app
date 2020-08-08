@@ -7,14 +7,12 @@ const Search = ( { pairing, setPairing } ) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('clicked', event.target)
     setPairing(newPair)
     console.log('pairing', pairing)
 }
 
 const handleChange = (event) => {
   setNewPair(event.target.value)
-  console.log(event.target.value)
   setPairing('')
 }
 

@@ -10,24 +10,22 @@ const { Header, Footer, Content } = Layout;
 const App = () => {
 
   const [pairing, setPairing] = useState('')
-  console.log('pairing', pairing)
-
 
   return (
     <div>
     <Layout style={{ fontFamily: 'Roboto'}}>
-    <Header style={{marginLeft: '12vh', marginTop: '0vh', fontSize: '3vh'}}>
-     <h1>Wine Pairing App</h1>
-     </Header>
-     <Content style={{textAlign: 'center', marginTop: '10vh'}}>
-     <p style={{fontSize: '3vh'}}>Find a wine that goes well with a food. </p>
-     <Search pairing={pairing} setPairing={setPairing} style={{justify: 'center', marginTop: '15vh'}}/>
-     <p style={{ marginTop: '2vh', fontSize: '2vh' }}>Food can be a dish name ("steak"), an ingredient name ("salmon"), or a cuisine ("italian")</p>
-     <Wines pairing={pairing} setPairing={setPairing}/>
-     </Content>
-     <Footer style={{textAlign: 'center', marginTop: '20vh', marginBottom: '5vh'}}>
-     <Quote />
-     </Footer>
+      <Header style={{marginLeft: '12vh', marginTop: '0vh', fontSize: '3vh'}}>
+        <h1>Wine Pairing App</h1>
+       </Header>
+      <Content style={{textAlign: 'center', margin: '10vh 10vh', justify: 'center'}}>
+        <p style={{fontSize: '3vh'}}>Find a wine that goes well with a food. </p>
+      <Search pairing={pairing} setPairing={setPairing} style={{justify: 'center', margin: '15vh'}}/>
+        <p style={{ margin: '2vh', fontSize: '3vh' }}>Food can be a dish name ("steak"), an ingredient name ("salmon"), or a cuisine ("italian")</p>
+      <Wines pairing={pairing} setPairing={setPairing}/>
+      </Content>
+      <Footer style={{textAlign: 'center', marginTop: '20vh', marginBottom: '5vh'}}>
+      <Quote />
+      </Footer>
      </Layout>
     </div>
   );
