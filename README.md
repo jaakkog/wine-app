@@ -14,5 +14,5 @@ Technologies:
 
 Production version can be found from here:
 
-https://master.d254bzg8c2hfwu.amplifyapp.com/
+https://wineapp-jaakko.herokuapp.com
 
