@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { List, Divider } from 'antd';
+import { List, WineHeader, WineInfo } from '../styles';
 
 const Wines = ( { pairing } ) => {
 
@@ -50,26 +50,22 @@ const Wines = ( { pairing } ) => {
         )
     } else {
 
+   const mappedWines = Object.keys(wines).map(key =>
+    <li key={key}>{wines[key]}</li>)
+
     return (
     <div>
-    <List
-      size='small' 
-      bordered
-      header={<div style={{fontSize: '4vh'}}>
-      Your wine matches:</div>}
-      dataSource={wines}
-      renderItem={item => (
-        <List.Item style={{fontSize: '3vh', 'margin': '3vh'}}>
-         {item}
-        </List.Item>
-      )}
-    />
-    <Divider orientation="left"></Divider>
+    <WineHeader>Your wine matches:</WineHeader>
+    <List>
+      {mappedWines}
+     </List>
+     <WineInfo>
       <p>{description}</p>
       <img src={image} alt=""></img>
       <p><a href={url}>{title}</a></p>
       <p>{wineInfo}</p>
       <p>Price: {price}</p>
+      </WineInfo>
       </div>
     );
 }

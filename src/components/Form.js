@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Form, TextField, Button } from '../styles';
 
 
 const Search = ( { pairing, setPairing } ) => {
@@ -17,10 +18,10 @@ const handleChange = (event) => {
 }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input id="food" value={newPair} onChange={handleChange} />
-          <button id="submit" type="submit">Find a wine for me </button>
-        </form>
+        <Form>
+            <TextField type="text" placeholder="What are you eating?" id="food" value={newPair} onChange={handleChange} />
+          <Button id="submit" type="submit" onClick={handleSubmit}>Find a wine for me </Button>
+        </Form>
       );
 }
 

@@ -26,7 +26,7 @@ const Quote = () => {
     return (
       <div>
         <h2>Food trivia</h2>
-        <p style={{'margin': '2vh'}}>{quote.text}</p>
+        <p>{quote.text}</p>
       </div>
     )
   }
