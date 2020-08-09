@@ -10,7 +10,7 @@ Technologies:
 - Express
 - Axios
 - Tests with Cypress
-- Basic styles with Ant Design
+- Styles with Styled Components
 
 Production version can be found from here:
 
