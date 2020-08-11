@@ -45,7 +45,7 @@ const Wines = ( { pairing } ) => {
     if (pairing === '') {
         return (
             <div>
-               No matches yet..
+              <p>No matches yet..</p>
             </div>
         )
     } else {

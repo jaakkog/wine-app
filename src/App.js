@@ -2,30 +2,53 @@ import React, { useState } from 'react';
 import Quote from './components/randomQuote';
 import Wines from './components/Wines';
 import Search from './components/Form';
-import { Page, Footer, Header, Content } from './styles';
+import HomePage from './components/HomePage';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
+import { GlobalStyles } from './global';
+import { Footer, StyledMenu, StyledBurger } from './styles';
+import {
+  BrowserRouter as Router,
+  Switch, Route, Link
+} from "react-router-dom"
 
 
 const App = () => {
 
   const [pairing, setPairing] = useState('')
+  const [open, setOpen] = useState(false);
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
-    <Page>
-      <Header>
-        Wine Pairing App
-       </Header>
-      <Content>
-        <p>Find a wine that goes well with a food. </p>
-      <Search pairing={pairing} setPairing={setPairing}/>
-        <p>Food can be a dish name ("steak"), an ingredient name ("salmon"), or a cuisine ("italian")</p>
-      <Wines pairing={pairing} setPairing={setPairing}/>
-      </Content>
+    <GlobalStyles/>
+    <Router>
+      <div>
+      <StyledBurger open={open} onClick={() => setOpen(!open)}>
+        <div/>
+        <div/>
+        <div/>
+      </StyledBurger>
+        <StyledMenu open={open}>
+        <Link to="/">Home</Link>
+        <Link to="/wines">Wines</Link>
+        </StyledMenu>
+      </div>
+      <Switch>
+        <Route path="/wines">
+        <Search pairing={pairing} setPairing={setPairing}/>
+        <Wines pairing={pairing} setPairing={setPairing}/>
+        </Route>
+        <Route path="/">
+          <HomePage/>
+        </Route>
+      </Switch>
       <Footer>
-      <Quote />
+        <Quote />
       </Footer>
-     </Page>
+     </Router>
     </div>
+    </ThemeProvider>
   );
 }
 
